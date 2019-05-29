@@ -33,27 +33,21 @@ export default class Main extends React.Component {
 				ToastAndroid.show('CARD CLICKED!', ToastAndroid.SHORT);
 								}
 
- 							webCall=()=>{
-								return fetch('https://reactnativecode.000webhostapp.com/FlowersList.php')
-     						.then((response) => response.json())
-     						.then((responseJson) => {
-								 this.setState({
-         				 isLoading: false,
-         				 dataSource: responseJson
-       						}, function() {
-       											});
-     								})
+ 						async	componentDidMount(){
+										fetch('http://demo.schoolbridge.in/mobile/get_show_on_app_photos/1')
+		     						.then((response) => response.json())
+		     						.then((responseJson) => {
+										 this.setState({
+		         				 isLoading: false,
+		         				 dataSource: responseJson
+		       						}, function() {
+		       											});
+		     								})
 
-     						.catch((error) => {
-       						console.error(error);
-     							});
+		     						.catch((error) => {
+		       						console.error(error);
+		     							});
 
-									}
-
-
-
-									componentDidMount(){
-										this.webCall();
 										}
 
   									render() {
@@ -67,99 +61,128 @@ export default class Main extends React.Component {
 
     							return(
 
+
 <View style={styles.container}>
 
        				<View style={styles.header}>
          			<Text style={styles.headerText}>THE TECH BRIDGE</Text>
        				</View>
 
-<ScrollView>
 
-			 	<Text> Gallery </Text>
 
+	<Text> Gallery </Text>
 			 		<FlatList horizontal={"true"}
-        	data={ this.state.dataSource }
+style={{flex:1}}
+        	data={ this.state.dataSource.data }
             renderItem={ ({item}) =>
-            <View style={{flex:1, flexDirection: 'row'}}>
-            <Image source = {{ uri: item.flower_image_url  }} style={styles.imageDimensions} />
+            <View style={{flex:1,flexDirection: 'row'}}>
+            <Image source = {{ uri: item.image  }} style={styles.imageDimensions} />
 						</View>
           	}
 
  					keyExtractor={(item, index) => index.toString()}
         		/>
 
-						<TouchableOpacity activeOpacity={0.7} onPress={this.touchDemo}>
-						<View style={{ width: 390, height: 100, flexDirection: 'row', marginLeft: 10 }}>
-		        <View  style={styles.innerCard}>
-						<Image style={styles.firsticon}
-				  		source={require('./images/research.png')}/ >
-				  	<Image style={styles.secondicon}
-					  	source={require('./images/arrow.png')}/ >
-			      <Text style={styles.mainText}>{'Admission Enquiry?'}</Text>
-				    <Text style={styles.subText}>{'Make an Enquiry here'}</Text>
-						</View>
-				    </View>
-						</TouchableOpacity>
 
 
-						<TouchableOpacity activeOpacity={0.7} onPress={this.touchDemo}>
-						<View style={styles.MainCard}>
-						<View  style={styles.innerCard}>
-						<Image style={ styles.firsticon}
-							source={require('./images/megaphone.png')}/ >
-						<Image style={styles.secondicon}
-							source={require('./images/arrow.png')}/ >
-						<Text style={styles.mainText}>{'News & Updates'}</Text>
-				    <Text style={styles.subText}>{'Read latest news & updates'}</Text>
-						</View>
-						</View>
-						</TouchableOpacity>
+<View style={{flex:2,backgroundColor: 'rgba(52, 52, 52, alpha', padding:10,flexDirection:'column'}}>
 
 
-						<TouchableOpacity activeOpacity={0.7} onPress={this.touchDemo}>
-						<View style={styles.MainCard}>
-						<View  style={styles.innerCard}>
-						<Image style={styles.firsticon}
-							source={require('./images/login.png')}/ >
-						<Image style={styles.secondicon}
-							source={require('./images/arrow.png')}/ >
-						<Text style={styles.mainText}>{'Registered User?'}</Text>
-				    <Text style={styles.subText}>{'Login with your credentials'}</Text>
-						</View>
-						</View>
-						</TouchableOpacity>
 
 
-						<TouchableOpacity activeOpacity={0.7} onPress={this.touchDemo}>
-						<View style={styles.MainCard}>
-						<View  style={styles.innerCard}>
-						<Image style={styles.firsticon}
-							source={require('./images/contact.png')}/ >
-						<Image style={styles.secondicon}
-							source={require('./images/arrow.png')}/ >
-						<Text style={styles.mainText}>{'Contact Us'}</Text>
-		    		<Text style={styles.subText}>{'Get your contact details here'}</Text>
-						</View>
-						</View>
-						</TouchableOpacity>
-
-
-						<TouchableOpacity  activeOpacity={0.7}onPress={this.touchDemo}>
-						<View style={styles.MainCard}>
-						<View  style={styles.innerCard}>
-						<Image style={styles.firsticon}
-							source={require('./images/group.png')}/ >
-						<Image style={styles.secondicon}
-							source={require('./images/arrow.png')}/ >
-						<Text style={styles.mainText}>{'About Us'}</Text>
-			   	  <Text style={styles.subText}>{'Get to know'}</Text>
-						</View>
-						</View>
-						</TouchableOpacity>
-
-
-</ScrollView>
+<TouchableOpacity style={{flex: 1,	backgroundColor: '#00B98D',borderRadius: 10 ,margin: 5,flexDirection:'row',alignItems: 'center'}}>
+<View style={{flex:8,padding:20,flexDirection: 'row',alignItems: 'center'}}>
+<Image style={styles.icon}
+source={require('./images/contact.png')}/ >
+<View style={{flex:1,flexDirection:'column',marginLeft:30}}>
+<Text style={styles.mainText}> Admission Enquiry? </Text>
+<Text style={styles.subText}> Make an enquiry here </Text>
 </View>
+</View>
+
+<View style={{flex:1,padding:20}}>
+<Image style={styles.icon}
+source={require('./images/arrow.png')}/ >
+</View>
+</TouchableOpacity>
+
+
+
+<TouchableOpacity style={{flex: 1,	backgroundColor: '#00B98D',borderRadius: 10 ,margin: 5,flexDirection:'row',alignItems: 'center'}}>
+<View style={{flex:8,padding:20,flexDirection: 'row',alignItems: 'center'}}>
+<Image style={styles.icon}
+source={require('./images/megaphone.png')}/ >
+<View style={{flex:1,flexDirection:'column',marginLeft:30}}>
+<Text style={styles.mainText}> News & Updates' </Text>
+<Text style={styles.subText}> Read latest news & updates </Text>
+</View>
+</View>
+
+<View style={{flex:1,padding:20}}>
+<Image style={styles.icon}
+source={require('./images/arrow.png')}/ >
+</View>
+</TouchableOpacity>
+
+
+<TouchableOpacity style={{flex: 1,	backgroundColor: '#00B98D',borderRadius: 10 ,margin: 5,flexDirection:'row',alignItems: 'center'}}>
+<View style={{flex:8,padding:20,flexDirection: 'row',alignItems: 'center'}}>
+<Image style={styles.icon}
+source={require('./images/login.png')}/ >
+<View style={{flex:1,flexDirection:'column',marginLeft:30}}>
+<Text style={styles.mainText}> Registered User? </Text>
+<Text style={styles.subText}> Login with your credentials</Text>
+</View>
+</View>
+
+<View style={{flex:1,padding:20}}>
+<Image style={styles.icon}
+source={require('./images/arrow.png')}/ >
+</View>
+</TouchableOpacity>
+
+
+
+
+
+<TouchableOpacity style={{flex: 1,	backgroundColor: '#00B98D',borderRadius: 10 ,margin: 5,flexDirection:'row',alignItems: 'center'}}>
+<View style={{flex:8,padding:20,flexDirection: 'row',alignItems: 'center'}}>
+<Image style={styles.icon}
+source={require('./images/contact.png')}/ >
+<View style={{flex:1,flexDirection:'column',marginLeft:30}}>
+<Text style={styles.mainText}> Contact Us </Text>
+<Text style={styles.subText}> Get your contact details here</Text>
+</View>
+</View>
+
+<View style={{flex:1,padding:20}}>
+<Image style={styles.icon}
+source={require('./images/arrow.png')}/ >
+</View>
+</TouchableOpacity>
+
+<TouchableOpacity style={{flex: 1,	backgroundColor: '#00B98D',borderRadius: 10 ,margin: 5,flexDirection:'row',alignItems: 'center'}}>
+<View style={{flex:8,padding:20,flexDirection: 'row',alignItems: 'center'}}>
+<Image style={styles.icon}
+source={require('./images/group.png')}/ >
+<View style={{flex:1,flexDirection:'column',marginLeft:30}}>
+<Text style={styles.mainText}> About us. </Text>
+<Text style={styles.subText}> Get to know </Text>
+</View>
+</View>
+
+<View style={{flex:1,padding:20}}>
+<Image style={styles.icon}
+source={require('./images/arrow.png')}/ >
+</View>
+</TouchableOpacity>
+
+
+</View>
+		</View>
+
+
+
     )
   }
 }
@@ -172,58 +195,36 @@ const styles = StyleSheet.create({
  		},
 
 
-MainCard:{
-	width: 390,
-	height: 100,
-	flexDirection: 'row',
-	marginLeft: 10 ,
-	marginTop:-18
-},
 
-innerCard:{
-	flex: 1,
-	backgroundColor: '#00B98D',
-	alignSelf: 'flex-end',
-	borderRadius: 10
-},
-
-firsticon:
+icon:
 {
 	width: 30,
-	height: 30,
-	position: 'absolute' ,
-	margin: 12
-},
+	height: 30
 
-secondicon:{
-	width: 30,
-	height: 30,
-	position: 'absolute' ,
-	marginLeft:345,
-	marginTop:12
-},
+	},
+	icon2:
+	{
+		width: 30,
+		height: 30,
+		alignItems: 'center',
+
+		},
+
 
 mainText:{
 	color: 'white',
-	fontSize: 15,
+	fontSize: 17,
 	fontWeight: 'bold',
-	marginLeft:120,
-	marginTop:5
+
+
 },
 
 subText:
 { color: 'white',
-fontSize: 12,
-marginLeft: 120 ,
-marginTop: 10,
-marginBottom:5 },
+fontSize: 15,
+},
 
- MainContainer: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
 
  header: {
    backgroundColor: "#00B98D",
