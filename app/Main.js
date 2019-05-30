@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-	View,
+  View,
   Text,
   ActivityIndicator,
   Image,
-	TouchableOpacity,
+  TouchableOpacity,
   ToastAndroid,
   FlatList,
   ScrollView,
@@ -47,17 +47,17 @@ export default class Main extends React.Component {
 	        }
 
 
-    render() {
-    			if (this.state.isLoading) {
-    			  return (
-     		            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-  			    <ActivityIndicator size="large" />
-		            </View>
-    		             );
-  			    }
+    	render() {
+    		if (this.state.isLoading) {
+    		 return (
+     	           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  		    <ActivityIndicator size="large" />
+		   </View>
+    	           );
+	          }
 
 
-		return(
+	return(
           <View style={styles.container}> //Main Parent
            <View style={styles.header}> //Header
              <Text style={styles.headerText}>THE TECH BRIDGE</Text> // Header Text
