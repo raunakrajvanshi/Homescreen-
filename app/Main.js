@@ -31,51 +31,52 @@ export default class Main extends React.Component {
 			ToastAndroid.show('CARD CLICKED!', ToastAndroid.SHORT);
 							}
 
-  async	componentDidMount(){
-  			fetch('http://demo.schoolbridge.in/mobile/get_show_on_app_photos/1')
-		   	.then((response) => response.json())
-		    .then((responseJson) => {
-					 this.setState({
-		       isLoading: false,
+  	async	componentDidMount(){
+		fetch('http://demo.schoolbridge.in/mobile/get_show_on_app_photos/1')
+		   .then((response) => response.json())
+		   .then((responseJson) => {
+		   	 this.setState({
+		         isLoading: false,
 		     	 dataSource: responseJson
-		      	}, function() {
-		       							});
-		     								})
-		     						.catch((error) => {
-		       						console.error(error);
-		     							});
-										}
+		       	 }, function() {
+		    		});
+		     		})
+		     		.catch((error) => {
+		       		console.error(error);
+		     		});	
+	        }
+
 
     render() {
     			if (this.state.isLoading) {
-    				return (
-     				<View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-  					<ActivityIndicator size="large" />
-					  </View>
-    		 				);
-  				}
+    			  return (
+     		            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+  			    <ActivityIndicator size="large" />
+		            </View>
+    		             );
+  			    }
 
 
 		return(
           <View style={styles.container}> //Main Parent
-          <View style={styles.header}> //Header
-         	<Text style={styles.headerText}>THE TECH BRIDGE</Text> // Header Text
-       		</View>
+           <View style={styles.header}> //Header
+             <Text style={styles.headerText}>THE TECH BRIDGE</Text> // Header Text
+       	   </View>
 
-	        <Text> Gallery </Text>
+	   <Text> Gallery </Text>
 
 					//FlatList to display API Images
-			 		<FlatList horizontal={"true"}
-            style={{flex:1}}
-        	   data={ this.state.dataSource.data }
+	   <FlatList horizontal={"true"}
+             style={{flex:1}}
+             data={ this.state.dataSource.data }
              renderItem={ ({item}) => //renders each item
-             <View style={{flex:1,flexDirection: 'row'}}>
-              <Image source = {{ uri: item.image  }} style={styles.imageDimensions} />
-					    </View>
-          	  }
+               <View style={{flex:1,flexDirection: 'row'}}>
+               <Image source = {{ uri: item.image  }} style={styles.imageDimensions} />
+               </View>
+                }
 
- 						keyExtractor={(item, index) => index.toString()}
-        		/>
+               keyExtractor={(item, index) => index.toString()}
+            />
 
 // Second Container That holds entire Card Flex 2 since it occupies 2/3 of screen
 
@@ -102,21 +103,21 @@ export default class Main extends React.Component {
 
 
  	<TouchableOpacity style={styles.TouchableStyle}>
-    <View style={styles.FirstCardPart}>
-      <Image style={styles.icon}
-      source={require('./images/megaphone.png')}/ >
-        <View style={{flex:1,flexDirection:'column',marginLeft:30}}>
-          <Text style={styles.mainText}> News & Updates' </Text>
-          <Text style={styles.subText}> Read latest news & updates </Text>
-        </View>
-    </View>
+     		<View style={styles.FirstCardPart}>
+     		 <Image style={styles.icon}
+      		  source={require('./images/megaphone.png')}/ >
+                 <View style={{flex:1,flexDirection:'column',marginLeft:30}}>
+         	  <Text style={styles.mainText}> News & Updates' </Text>
+         	  <Text style={styles.subText}> Read latest news & updates </Text>
+                 </View>
+               </View>
 
     <View style={{flex:1,padding:20}}>
       <Image style={styles.icon}
       source={require('./images/arrow.png')}/ >
     </View>
 
-  </TouchableOpacity>
+  	</TouchableOpacity>
 
 
     <TouchableOpacity style={styles.TouchableStyle}>
@@ -135,7 +136,7 @@ export default class Main extends React.Component {
       source={require('./images/arrow.png')}/ >
      </View>
 
-</TouchableOpacity>
+  </TouchableOpacity>
 
     <TouchableOpacity style={styles.TouchableStyle}>
       <View style={styles.FirstCardPart}>
@@ -143,9 +144,10 @@ export default class Main extends React.Component {
         source={require('./images/contact.png')}/ >
 
       	<View style={{flex:1,flexDirection:'column',marginLeft:30}}>
-        	<Text style={styles.mainText}> Contact Us </Text>
-        	<Text style={styles.subText}> Get your contact details here</Text>
-        	</View>
+           <Text style={styles.mainText}> Contact Us </Text>
+           <Text style={styles.subText}> Get your contact details here</Text>
+        </View>
+
       </View>
 
       <View style={{flex:1,padding:20}}>
